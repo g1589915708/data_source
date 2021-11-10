@@ -245,6 +245,7 @@ void _load_config(int t){
 							strcat(name,cJSON_GetObjectItem(source,"name")->valuestring);
 							eredis_w_cmd(ert,"SET %s %s",name,data);
 							cJSON_AddItemToArray( def, cJSON_CreateString(name));
+							eredis_w_cmd(ert,"SET %s %s",cJSON_GetObjectItem(source,"source")->valuestring,name);
 							free(data);
 							cJSON_Delete(config);
 						}
